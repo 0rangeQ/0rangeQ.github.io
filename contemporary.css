@@ -213,15 +213,20 @@ h2 {
 .header-identity {
   display:flex;
   flex-direction:column;
-  margin-left: calc(0.7rem + 1vw);
   margin-top: 0.7rem;
   color: rgb(1, 45, 134);
   text-shadow:
                 1px 1px 2px #1183,
                 2px 2px 4px #1182,
                 3px 3px 4px #1182;
-  padding-left: 0.9rem;
+  padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+@media (min-width: 700px) {
+  .header-identity {
+    margin-left: 0.8rem;
+  }
 }
 
 .header-name {
@@ -673,7 +678,7 @@ footer a {
 
 .outro {
   padding-top: 1.7rem;
-  margin-bottom: 3.2rem;
+  margin-bottom: 4.2rem;
 }
 
 .outro p {
@@ -698,14 +703,14 @@ footer a {
 .copyright-notice {
   display: flex;
   justify-content: center;
-  padding-top: 3.4rem;
+  padding-top: 1.4rem;
   padding-bottom: 2.8rem;
-  padding-left: 0.2rem;
-  padding-right: 0.2rem;
-  font-size: 0.9rem;
+  padding-left: 0.0rem;
+  padding-right: 0.0rem;
+  font-size: 0.84rem;
 }
 
-@media (min-width: 340px) {
+@media (min-width: 380px) {
   .copyright-notice {
     font-size: 1.0rem;
   }
