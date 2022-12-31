@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bs": "browser-sync start --server --files . --index contemporary.html",
+    "bs": "browser-sync start --server --files . --index index.html",
     "bscurve": "browser-sync start --server --files . --index curve-sections.html"
   },
   "keywords": [],
