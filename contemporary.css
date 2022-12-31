@@ -331,7 +331,7 @@ h2 {
   padding-top: 5rem;
   font-size: var(--copy-size);
   background-color: black;
-  padding-bottom: 10rem;
+  padding-bottom: 5rem;
 }
 
 .blurb-section p {
@@ -376,6 +376,7 @@ h2 {
 }
 
 .project-canvas {
+  z-index: -2;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -430,6 +431,7 @@ h2 {
 }
 
 .image-shadow {
+  z-index: -1;
   position: absolute;
   border-radius: 20px;
   background-color: rgb(12, 6, 23);

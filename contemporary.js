@@ -52,7 +52,7 @@ function drawZigzag () {
   
   const canvasRect = canvas.getBoundingClientRect()
   const gradient = ctx.createLinearGradient(0, 0, 0, canvasRect.height)
-  gradient.addColorStop(0, 'rgba(10,10,20,0.5')
+  gradient.addColorStop(0, 'rgba(10,10,20,0.05')
   gradient.addColorStop(1, 'rgba(40, 16, 61, 0.7)')
 
   ctx.strokeStyle = gradient
