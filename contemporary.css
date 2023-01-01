@@ -466,11 +466,11 @@ h2 {
 .project-details a {
   color: #dc5de8;
 }
-.project-details a:hover {
-  color: #f9b9ff;
-}
 .project-details a:visited {
   color: #aa2fb5;
+}
+.project-details a:hover {
+  color: #f9b9ff;
 }
 
 /* Alternating-side details, correct flex growth for column container
@@ -687,12 +687,12 @@ footer a {
   color: rgb(128, 204, 255);
 }
 
-footer a:hover {
-  color: rgb(167, 220, 255);
-}
-
 footer a:visited {
   color: rgb(63, 121, 159);
+}
+
+footer a:hover {
+  color: rgb(167, 220, 255);
 }
 
 .outro {
