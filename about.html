@@ -41,14 +41,14 @@
     }
 
     footer {
-      margin-top: 6rem;
       min-height: 1rem;
       padding-bottom: 0rem;
       padding-top: 2rem;
     }
 
     .banner-strip {
-      height: 6rem;
+      position: relative;
+      height: 12.5rem;
       background: radial-gradient(
         130% 55vw ellipse at 10vw 50px,
         rgb(210, 230, 255) 12%,
@@ -63,6 +63,28 @@
 
     .header-links a {
       color: rgb(10, 0, 5);
+    }
+
+    .about-wave-top {
+      z-index: 2;
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      height: min(10vw, 7rem);
+      background-image: url('banner.svg');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: right 0px bottom 0px;
+    }
+
+    .about-wave-bottom {
+      margin-top: 4rem;
+      height: 7rem;
+      background-color: rgb(43, 30, 89);
+      background-image: url('banner-invert.svg');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: left 0px top 0px;
     }
   </style>
 </head>
@@ -80,9 +102,12 @@
     </div>
   </header>
 
-  <div class="banner-strip"></div>
+  <div class="banner-strip">
+    <div class="about-wave-top"></div>
+  </div>
+
   <div class="mw40 pad-symmetrical main-content">
-    <h1>About me</h1>
+    <h1 style="margin-top: 4rem;">About me</h1>
     <hr>
     <p>
     Hi, I'm Crystal. I write stuff. Hire me.
@@ -95,6 +120,9 @@
       <a href="index.html">&laquo; Back to site</a>
     </div>
   </div>
+
+  <!-- Shape divider -->
+  <div class="about-wave-bottom"></div>
 
   <footer id="contact">
     <div class="mw40 pad-symmetrical">
