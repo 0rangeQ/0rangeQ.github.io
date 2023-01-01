@@ -11,85 +11,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="contemporary.css">
+  <link rel="stylesheet" href="about.css">
 
   <title>About</title>
-
-  <style>
-    :root {
-      --header-color: rgb(175, 225, 255);
-      --copy-color: rgb(250, 235, 255);
-    }
-
-    h1,h2,h3,h4,h5,h6 {
-      font-weight: 300;
-    }
-
-    h1 {
-      margin-top: 4rem;
-    }
-
-    hr {
-      color: rgb(128, 165, 189);
-    }
-
-    p {
-      margin-top: 1.2rem;
-    }
-
-    a {
-      color: rgb(139, 209, 255);
-    }
-
-    footer {
-      min-height: 1rem;
-      padding-bottom: 0rem;
-      padding-top: 2rem;
-    }
-
-    .banner-strip {
-      position: relative;
-      height: 10rem;
-      background: radial-gradient(
-        130% 55vw ellipse at 10vw 50px,
-        rgb(210, 230, 255) 12%,
-        rgb(153, 193, 254) 32%,
-        rgb(220, 115, 206) 75%,
-        rgb(210, 85, 156) 97%);
-    }
-
-    .header-links {
-      padding-top: 1.5rem;
-    }
-
-    .header-links a {
-      color: rgb(10, 0, 5);
-    }
-
-    .about-wave-top {
-      z-index: 2;
-      position: absolute;
-      bottom: 0px;
-      width: 100%;
-      height: min(10vw, 5rem);
-      background-image: url('banner.svg');
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-      background-position: right 0px bottom 0px;
-    }
-
-    .about-wave-bottom {
-      margin-top: 4rem;
-      height: 7rem;
-      background-color: rgb(43, 30, 89);
-      background-image: url('banner-invert.svg');
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-      background-position: left 0px top 0px;
-    }
-  </style>
 </head>
 
 <body>
+  <a href="index.html" style="text-decoration: none;">
   <header class="personal-container">
     <div class="header-identity">
       <h2 class="header-name">crystal quimby</h2>
@@ -101,6 +29,7 @@
       <a href="#contact">contact</a>
     </div>
   </header>
+  </a>
 
   <div class="banner-strip">
     <div class="about-wave-top"></div>
@@ -114,7 +43,20 @@
     </p>
     <h1>About this site</h1>
     <hr>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vehicula aliquet ipsum non condimentum. Morbi ut dolor posuere, consectetur lorem eget, vestibulum massa. In sem nulla, faucibus non finibus at, posuere eu turpis. Aliquam eget ante ut ante finibus vulputate. Morbi maximus orci a fringilla eleifend. Pellentesque leo metus, facilisis sit amet velit vitae, scelerisque vulputate tortor. Vestibulum commodo commodo placerat. Phasellus ut velit nec mauris accumsan tempus et dictum quam. Nam elementum vitae odio sit amet facilisis.</p>
+    <p>
+      Programming and web design provided by <a href="https://bprcode.github.io" style="text-decoration:none;"><span class="underline">bprcode</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </svg></a>.
+    </p>
+
+    <p>This site gratefully employs the photography of the following artists:</p>
+    <ul>
+      <li><a href="https://unsplash.com/@georgebakos?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">George Bakos</a></li>
+      <li><a href="https://unsplash.com/@alonsoreyes?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alonso Reyes</a></li>
+      <li><a href="https://unsplash.com/@cjdante?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Javier Martínez</a></li>
+      <li><a href="https://unsplash.com/@wistomsin?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Tom Barrett</a></li>
+      <li><a href="https://unsplash.com/@arcreates?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Anthony Roberts</a></li>
+    </ul>
 
     <div class="offset">
       <a href="index.html">&laquo; Back to site</a>
