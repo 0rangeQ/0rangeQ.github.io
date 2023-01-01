@@ -687,6 +687,14 @@ footer a {
   color: rgb(128, 204, 255);
 }
 
+footer a:hover {
+  color: rgb(167, 220, 255);
+}
+
+footer a:visited {
+  color: rgb(63, 121, 159);
+}
+
 .outro {
   padding-top: 1.7rem;
   margin-bottom: 4.2rem;
