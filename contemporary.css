@@ -466,6 +466,9 @@ h2 {
 .project-details a {
   color: #dc5de8;
 }
+.project-details a:visited {
+  color: #dc5de8;
+}
 .project-details a:hover {
   color: #f9b9ff;
 }
@@ -683,6 +686,9 @@ footer {
 
 footer a {
   font-weight: 400;
+  color: rgb(128, 204, 255);
+}
+footer a:visited {
   color: rgb(128, 204, 255);
 }
 

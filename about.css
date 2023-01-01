@@ -23,6 +23,10 @@ a {
   color: rgb(139, 209, 255);
 }
 
+a:visited {
+  color: rgb(139, 209, 255);
+}
+
 a:hover {
   color: rgb(185, 227, 255);
 }
