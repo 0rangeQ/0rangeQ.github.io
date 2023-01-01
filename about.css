@@ -55,15 +55,17 @@ footer {
   position: relative;
   height: 10rem;
   background: radial-gradient(
-    130% 55vw ellipse at 10vw 50px,
+    130% 75vw ellipse at 10vw 50px,
     rgb(210, 230, 255) 12%,
     rgb(153, 193, 254) 32%,
     rgb(220, 115, 206) 75%,
     rgb(210, 85, 156) 97%);
 }
 
-.header-links {
-  padding-top: 1.5rem;
+@media (min-width: 576px) {
+  .header-links {
+    padding-top: 1.5rem;
+  }
 }
 
 .header-links a {
