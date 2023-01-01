@@ -665,6 +665,10 @@ Desktop-first makes it easier to encapsulate this behavior */
   color:  rgb(75, 44, 187);
 }
 
+.technical-section a:hover {
+  color:  rgb(202, 58, 197);
+}
+
 .technical-icon img {
   margin-left: 0.9rem;
   margin-right: 0.5rem;
