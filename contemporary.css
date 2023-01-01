@@ -463,6 +463,10 @@ h2 {
   margin-top: -4rem;
 }
 
+.project-details a {
+  color: #dc5de8;
+}
+
 /* Alternating-side details, correct flex growth for column container
 Desktop-first makes it easier to encapsulate this behavior */
 @media (max-width: 500px) {
