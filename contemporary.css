@@ -466,6 +466,12 @@ h2 {
 .project-details a {
   color: #dc5de8;
 }
+.project-details a:hover {
+  color: #f9b9ff;
+}
+.project-details a:visited {
+  color: #aa2fb5;
+}
 
 /* Alternating-side details, correct flex growth for column container
 Desktop-first makes it easier to encapsulate this behavior */
