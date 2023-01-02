@@ -10,3 +10,4 @@
 👽 Updating from 7115649 (Add debug readout for Safari) to new version…
 🦠 Updating from 8754b54 (Add more debug info for Safari) to new version…
 🦐 Updating from d6e4ff3 (Expand Safari debug readout) to new version…
+🐛 Updating from 17c6bee (Modify About footer) to new version…
