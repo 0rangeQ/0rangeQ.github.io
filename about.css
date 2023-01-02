@@ -42,7 +42,7 @@ ul {
 }
 
 ul p {
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.7rem;
 }
 
 ul a {
@@ -120,4 +120,14 @@ footer {
 .fuzzy-critters {
   margin-top: 2rem;
   width: min(90vw, 375px);
+}
+
+@media (min-width: 576px) and (max-width: 625px) {
+  .header-identity {
+    padding-left: 0.5rem;
+  }
+  .header-links {
+    margin-left: 0rem;
+    margin-right: 0.5rem;
+  }
 }

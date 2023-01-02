@@ -29,6 +29,7 @@
 }
 
 body {
+  overflow-x: hidden;
   position: relative;
   background-color: #111;
   color: var(--copy-color);
@@ -218,7 +219,7 @@ h2 {
                 1px 1px 2px #1183,
                 2px 2px 4px #1182,
                 3px 3px 4px #1182;
-  padding-left: 0.5rem;
+  padding-left: 1.0rem;
   padding-right: 0.5rem;
 }
 

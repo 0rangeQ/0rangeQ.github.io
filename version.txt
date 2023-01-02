@@ -19,3 +19,4 @@
 🐨 Updating from 3977c34 (Try Safari CSS parallax fix) to new version…
 🦝 Updating from d2ad152 (Fix About footer underlines) to new version…
 🐷 Updating from 316cd57 (Add awesome pet pictures, rebalance) to new version…
+🦜 Updating from 2a11f9d (Center pet pics) to new version…
