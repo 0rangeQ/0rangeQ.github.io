@@ -5,3 +5,4 @@
 🐢 Updating from b4c8f4d (Fix About page portfolio & contact) to new version…
 🐹 Updating from aabebeb (Rename client link) to new version…
 🐨 Updating from 77eaf4b (Try -1px Safari alignment fix) to new version…
+🐳 Updating from 4aca58d (Test Safari fix (orange version)) to new version…

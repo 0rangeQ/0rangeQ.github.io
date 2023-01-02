@@ -441,7 +441,7 @@ h2 {
   height: 120px;
   margin-top: 40px;
 
-  transition: background-color 0.8s ease;
+  transition: background-color 0.8s ease, transform 0.1s linear;
 }
 
 .shadow-reveal {
@@ -541,16 +541,11 @@ Desktop-first makes it easier to encapsulate this behavior */
 } /* End of media query */
 
 .project-container li img {
-  /* DEBUG */
-  /* width: min(170px, 50vw);
-  height: min(170px, 50vw); */
   width: min(186px, 50vw);
   height: min(186px, 50vw);
+
   border-radius: 100%;
-  /* outline: 8px solid rgb(43, 30, 89); */
-  /* DEBUG */
-  /* box-sizing: content-box; */
-  border: 8px solid orange;
+  border: 8px solid rgb(43, 30, 89);
 
   position: relative;
 }
