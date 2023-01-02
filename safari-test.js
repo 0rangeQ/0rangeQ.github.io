@@ -8,16 +8,17 @@ console.clear()
 const safariTest = document.getElementById('safari-test')
 safariTest.innerHTML += '<br>Initial script execution'
 
-if (document.readyState === 'loading') {
-  safariTest.innerHTML += '<br>readyState was "loading"'
-  document.addEventListener('load', initialize)
-} else {
-  safariTest.innerHTML += '<br>readyState was not "loading"'
-  initialize()
-}
+// if (document.readyState === 'loading') {
+//   safariTest.innerHTML += '<br>readyState was "loading"'
+//   document.addEventListener('load', initialize)
+// } else {
+//   safariTest.innerHTML += '<br>readyState was not "loading"'
+//   initialize()
+// }
 
 document.addEventListener('DOMContentLoaded', () => {
   safariTest.innerHTML += '<br>DOMContentLoaded triggered'
+  initialize()
 })
 
 function initialize () {
@@ -30,7 +31,7 @@ function initialize () {
 
   safariTest.innerHTML += `<br>found ${slideParallaxList.length} parallax items`
   safariTest.innerHTML += `<br>found ${observerTargets.length} shade-in items`
-  
+
   for (const e of slideParallaxList) {
     const parsedEntry = {
       element: e,
