@@ -16,3 +16,4 @@
 👾 Updating from 3a1ca36 (Add truthy Safari debug info) to new version…
 🦆 Updating from c529de2 (Redirect about(top) contact to same page) to new version…
 🐌 Updating from 4568802 (Add yet more log text) to new version…
+🐨 Updating from 3977c34 (Try Safari CSS parallax fix) to new version…
