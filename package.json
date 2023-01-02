@@ -9,5 +9,8 @@
   },
   "keywords": [],
   "author": "bprcode <bprcode@gmail.com>",
-  "license": "None"
+  "license": "None",
+  "dependencies": {
+    "@bprcode/handy": "^0.3.3"
+  }
 }
