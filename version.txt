@@ -20,3 +20,4 @@
 🦝 Updating from d2ad152 (Fix About footer underlines) to new version…
 🐷 Updating from 316cd57 (Add awesome pet pictures, rebalance) to new version…
 🦜 Updating from 2a11f9d (Center pet pics) to new version…
+🦀 Updating from 1ea1ea5 (Adjust about header breakpoints) to new version…
