@@ -21,3 +21,4 @@
 🐷 Updating from 316cd57 (Add awesome pet pictures, rebalance) to new version…
 🦜 Updating from 2a11f9d (Center pet pics) to new version…
 🦀 Updating from 1ea1ea5 (Adjust about header breakpoints) to new version…
+🦇 Updating from b318544 (Fix top wave cutoff) to new version…

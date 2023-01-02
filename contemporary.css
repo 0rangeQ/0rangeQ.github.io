@@ -206,7 +206,7 @@ h2 {
   }
 
   .tagline {
-    margin-top: 8rem;
+    margin-top: 7.5rem;
   }
 }
 
@@ -262,8 +262,8 @@ h2 {
   position: absolute;
   bottom: -1px; /* fix for Safari alignment */
   width: 100%;
-  height: min(10vw, 200px);
-  background-image: url('wave-with-margin.svg');
+  height: min(13vw, 200px);
+  background-image: url('wave-margin.svg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: right 0px bottom 0px;
