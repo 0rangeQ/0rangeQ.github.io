@@ -14,3 +14,4 @@
 🐤 Updating from ec08a85 (Merge remote-tracking branch 'publish/main') to new version…
 🐸 Updating from 6a5b805 (Try Safari load order fix) to new version…
 👾 Updating from 3a1ca36 (Add truthy Safari debug info) to new version…
+🦆 Updating from c529de2 (Redirect about(top) contact to same page) to new version…

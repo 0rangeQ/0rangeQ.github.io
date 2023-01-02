@@ -32,11 +32,16 @@ function initialize () {
       safariTest.innerHTML += `<br> e was truthy`
       if (getComputedStyle(e)) {
         safariTest.innerHTML += `<br> getComputedStyle result was truthy`
+        if (getComputedStyle(e).getPropertyValue('--parallax-scroll')) {
+          safariTest.innerHTML += `<br>...getPropertyValue --parallax-scroll was truthy`
+        } else {
+          safariTest.innerHTML += `<br>...getPropertyValue --parallax-scroll was FALSY`
+        }
       } else {
-        safariTest.innerHTML += `<br> getComputedStyle result was falsy`
+        safariTest.innerHTML += `<br> getComputedStyle result was FALSY`
       }
     } else {
-      safariTest.innerHTML += `<br> e was falsy`
+      safariTest.innerHTML += `<br> e was FALSY`
     }
 
     const parsedEntry = {
