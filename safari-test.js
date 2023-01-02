@@ -16,6 +16,10 @@ if (document.readyState === 'loading') {
   initialize()
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  safariTest.innerHTML += '<br>DOMContentLoaded triggered'
+})
+
 function initialize () {
   safariTest.innerHTML += '<br>initialize() executing'
   const slideParallaxList =
@@ -34,10 +38,13 @@ function initialize () {
               .trim()
               .match(/[\D]+/)[0]
     }
+
+    safariTest.innerHTML += `<br>Pushing parallax element with: shift=${parsedEntry.shift}, units=${parsedEntry.units}`
     staticParallaxList.push(parsedEntry)
   }
 
   for (const e of observerTargets) {
+    safariTest.innerHTML += '<br>Adding observer target...'
     observer.observe(e)
   }
 
@@ -48,6 +55,7 @@ function initialize () {
 }
 
 function drawZigzag () {
+  safariTest.innerHTML += '<br>drawZigzag() called...'
   const canvas = document.getElementById('project-canvas')
   const ctx = canvas.getContext('2d')
   const realWidth = canvas.offsetWidth

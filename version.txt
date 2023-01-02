@@ -7,3 +7,4 @@
 🐨 Updating from 77eaf4b (Try -1px Safari alignment fix) to new version…
 🐳 Updating from 4aca58d (Test Safari fix (orange version)) to new version…
 🐶 Updating from a344ca6 (Port Safari fixes to main version) to new version…
+👽 Updating from 7115649 (Add debug readout for Safari) to new version…
