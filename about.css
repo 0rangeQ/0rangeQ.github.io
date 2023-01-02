@@ -112,6 +112,11 @@ footer {
   padding-top: 4rem;
 }
 
+.critter-container {
+  display: flex;
+  justify-content: center;
+}
+
 .fuzzy-critters {
   margin-top: 2rem;
   width: min(90vw, 375px);
