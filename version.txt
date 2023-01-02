@@ -22,3 +22,4 @@
 🦜 Updating from 2a11f9d (Center pet pics) to new version…
 🦀 Updating from 1ea1ea5 (Adjust about header breakpoints) to new version…
 🦇 Updating from b318544 (Fix top wave cutoff) to new version…
+👽 Updating from 493f7d2 (Adjust margin for wave svg) to new version…
