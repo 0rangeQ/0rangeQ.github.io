@@ -13,10 +13,11 @@ h1 {
 
 hr {
   color: rgb(128, 165, 189);
+  margin-bottom: 1.4rem;
 }
 
 p {
-  margin-top: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
 a {
@@ -38,7 +39,10 @@ a:active {
 ul {
   list-style-image: url('dot.svg');
   padding-left: 1rem;
-  padding-top: 0.7rem;
+}
+
+ul p {
+  margin-bottom: 1.2rem;
 }
 
 ul a {
@@ -49,7 +53,7 @@ footer {
   min-height: 1rem;
   margin-top: -1rem;
   padding-bottom: 0rem;
-  padding-top: 0.5rem;
+  padding-top: 2.2rem;
 }
 
 .banner-strip {
@@ -105,5 +109,10 @@ footer {
 }
 
 .offset {
-  padding-top: 3rem;
+  padding-top: 4rem;
+}
+
+.fuzzy-critters {
+  margin-top: 2rem;
+  width: min(90vw, 375px);
 }
