@@ -18,16 +18,20 @@ function initialize () {
     document.querySelectorAll('.shade-in-shadow')
 
   for (const e of slideParallaxList) {
+    const scrollString = getComputedStyle(e)
+                          .getPropertyValue('--parallax-scroll')
+                          || '100px' // In case script loads before CSS
     const parsedEntry = {
       element: e,
       shift: parseFloat(
-              getComputedStyle(e).getPropertyValue('--parallax-scroll')
+              scrollString
               .trim()
               .match(/\d*/)[0]),
-      units: getComputedStyle(e).getPropertyValue('--parallax-scroll')
+      units: scrollString
               .trim()
               .match(/[\D]+/)[0]
     }
+
     staticParallaxList.push(parsedEntry)
   }
 
