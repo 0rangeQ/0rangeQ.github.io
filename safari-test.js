@@ -21,12 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function initialize () {
+  try {
   safariTest.innerHTML += '<br>initialize() executing'
   const slideParallaxList =
     document.querySelectorAll('.slide-parallax')
   const observerTargets =
     document.querySelectorAll('.shade-in-shadow')
 
+  safariTest.innerHTML += `<br>found ${slideParallaxList.length} parallax items`
+  safariTest.innerHTML += `<br>found ${observerTargets.length} shade-in items`
+  
   for (const e of slideParallaxList) {
     const parsedEntry = {
       element: e,
@@ -52,6 +56,10 @@ function initialize () {
   drawZigzag()
 
   requestAnimationFrame(animateParallax)
+
+  } catch(e) {
+    safariTest.innerHTML += `<br>Caught error: ` + e.message
+  }
 }
 
 function drawZigzag () {
