@@ -541,10 +541,16 @@ Desktop-first makes it easier to encapsulate this behavior */
 } /* End of media query */
 
 .project-container li img {
-  width: min(170px, 50vw);
-  height: min(170px, 50vw);
+  /* DEBUG */
+  /* width: min(170px, 50vw);
+  height: min(170px, 50vw); */
+  width: min(186px, 50vw);
+  height: min(186px, 50vw);
   border-radius: 100%;
-  outline: 8px solid rgb(43, 30, 89);
+  /* outline: 8px solid rgb(43, 30, 89); */
+  /* DEBUG */
+  /* box-sizing: content-box; */
+  border: 8px solid orange;
 
   position: relative;
 }
@@ -603,7 +609,7 @@ Desktop-first makes it easier to encapsulate this behavior */
 
 .bottom-angle {
   background-image: url('angle-inverted.svg');
-  bottom: 0px;
+  bottom: -1px; /* Safari alignment fix */
 }
 
 .technical-section {

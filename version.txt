@@ -4,3 +4,4 @@
 🐶 Updating from e7e8d51 (Test Safari margin fix (yellow version)) to new version…
 🐢 Updating from b4c8f4d (Fix About page portfolio & contact) to new version…
 🐹 Updating from aabebeb (Rename client link) to new version…
+🐨 Updating from 77eaf4b (Try -1px Safari alignment fix) to new version…
