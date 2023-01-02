@@ -12,3 +12,4 @@
 🦐 Updating from d6e4ff3 (Expand Safari debug readout) to new version…
 🐛 Updating from 17c6bee (Modify About footer) to new version…
 🐤 Updating from ec08a85 (Merge remote-tracking branch 'publish/main') to new version…
+🐸 Updating from 6a5b805 (Try Safari load order fix) to new version…

@@ -8,18 +8,13 @@ console.clear()
 const safariTest = document.getElementById('safari-test')
 safariTest.innerHTML += '<br>Initial script execution'
 
-// if (document.readyState === 'loading') {
-//   safariTest.innerHTML += '<br>readyState was "loading"'
-//   document.addEventListener('load', initialize)
-// } else {
-//   safariTest.innerHTML += '<br>readyState was not "loading"'
-//   initialize()
-// }
-
-document.addEventListener('DOMContentLoaded', () => {
-  safariTest.innerHTML += '<br>DOMContentLoaded triggered'
+if (document.readyState === 'loading') {
+  safariTest.innerHTML += '<br>readyState was "loading"'
+  document.addEventListener('load', initialize)
+} else {
+  safariTest.innerHTML += '<br>readyState was not "loading"'
   initialize()
-})
+}
 
 function initialize () {
   try {
@@ -33,6 +28,17 @@ function initialize () {
   safariTest.innerHTML += `<br>found ${observerTargets.length} shade-in items`
 
   for (const e of slideParallaxList) {
+    if (e) {
+      safariTest.innerHTML += `<br> e was truthy`
+      if (getComputedStyle(e)) {
+        safariTest.innerHTML += `<br> getComputedStyle result was truthy`
+      } else {
+        safariTest.innerHTML += `<br> getComputedStyle result was falsy`
+      }
+    } else {
+      safariTest.innerHTML += `<br> e was falsy`
+    }
+
     const parsedEntry = {
       element: e,
       shift: parseFloat(
