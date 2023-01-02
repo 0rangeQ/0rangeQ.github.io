@@ -9,3 +9,4 @@
 🐶 Updating from a344ca6 (Port Safari fixes to main version) to new version…
 👽 Updating from 7115649 (Add debug readout for Safari) to new version…
 🦠 Updating from 8754b54 (Add more debug info for Safari) to new version…
+🦐 Updating from d6e4ff3 (Expand Safari debug readout) to new version…

@@ -47,8 +47,9 @@ ul a {
 
 footer {
   min-height: 1rem;
+  margin-top: -1rem;
   padding-bottom: 0rem;
-  padding-top: 2rem;
+  padding-top: 0.5rem;
 }
 
 .banner-strip {
@@ -92,6 +93,11 @@ footer {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: left 0px top 0px;
+}
+
+.about-outro {
+  text-align: center;
+  margin-bottom: 1.3rem;
 }
 
 .offset {
