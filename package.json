@@ -1,11 +1,12 @@
 {
-  "name": "copywriter portfolio",
+  "name": "copywriter-portfolio",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bs": "browser-sync start --server --files . --index index.html"
+    "bs": "browser-sync start --server --files . --index index.html",
+    "mac": "browser-sync start --server --files . --index safari-test.html"
   },
   "keywords": [],
   "author": "bprcode <bprcode@gmail.com>",
