@@ -254,7 +254,6 @@ h2 {
   align-items: center;
   height: 370px;
   background: radial-gradient(100% 400px ellipse at 110px 50px, #13f1fc -10%,#f470dc 97%);
-  border-bottom: 4px solid limegreen; /* Fix for Safari alignment */
 }
 
 .lower-wave {
@@ -267,6 +266,7 @@ h2 {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: right 0px bottom 0px;
+  border-bottom: 4px solid yellow; /* Fix for Safari alignment */
 }
 
 .moving-light {
