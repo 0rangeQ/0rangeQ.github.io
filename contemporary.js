@@ -3,14 +3,8 @@ const observer = new IntersectionObserver(
   handleIntersections,
   { threshold: [0.7] })
 const log = console.log.bind(console)
-console.clear()
 
-if (document.readyState === 'loading') {
-  document.addEventListener('load', initialize)
-} else {
-  initialize()
-}
-
+initialize()
 function initialize () {
   const slideParallaxList =
     document.querySelectorAll('.slide-parallax')
@@ -56,7 +50,7 @@ function drawZigzag () {
   
   const canvasRect = canvas.getBoundingClientRect()
   const gradient = ctx.createLinearGradient(0, 0, 0, canvasRect.height)
-  gradient.addColorStop(0, 'rgba(10,10,20,0.15')
+  gradient.addColorStop(0, 'rgba(10,10,20,0.75')
   gradient.addColorStop(1, 'rgba(40, 16, 61, 0.75)')
 
   ctx.strokeStyle = gradient
