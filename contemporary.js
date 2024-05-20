@@ -2,7 +2,6 @@ const staticParallaxList = []
 const observer = new IntersectionObserver(
   handleIntersections,
   { threshold: [0.7] })
-const log = console.log.bind(console)
 
 initialize()
 function initialize () {
@@ -88,7 +87,7 @@ function drawZigzag () {
   }
 }
 
-function handleIntersections (entries, observer) {
+function handleIntersections (entries) {
   for (const e of entries) {
     if (e.isIntersecting) {
         e.target.classList.add('shadow-reveal')
@@ -98,26 +97,17 @@ function handleIntersections (entries, observer) {
   }
 }
 
-function animateParallax (timestamp) {
-  // animateParallax.lastScrollY ??= scrollY
-
-  // The commented optimization works, but negatively impacts
-  // the smoothness of the animation deceleration.
-  // if (animateParallax.lastScrollY !== scrollY) {
+function animateParallax () {
     for (const e of staticParallaxList) {
       // Compute progress scalar (0 ... 1.0) for element scroll
       // 0.0 -> top of element just reached bottom of viewport
       // 1.0 -> bottom of element just reached top of viewport
       const rect = e.element.getBoundingClientRect()
       const s = rect.bottom / (window.innerHeight + rect.height)
-      // const yMove = (-(1-s) * shift)
       const yMove = (-(0.5-s) * e.shift)
       e.element.style['transform'] = 
         `translate(0px, ${yMove}${e.units})`
-      //(-(1-s) * shift * rect.height) + 'px'
     }
-
-  // animateParallax.lastScrollY = scrollY
 
   requestAnimationFrame(animateParallax)
 }
