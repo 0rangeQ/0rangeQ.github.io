@@ -15,6 +15,13 @@ let gradientEnd = {
   lightness: 12,
 }
 
+function debounce(callback, delay = 200) {
+  return () => {
+    clearTimeout(debounce.tid)
+    debounce.tid = setTimeout(callback, delay)
+  }
+}
+
 initialize()
 function initialize () {
   const slideParallaxList =
@@ -44,7 +51,8 @@ function initialize () {
     observer.observe(e)
   }
 
-  window.addEventListener('resize', drawZigzag)
+  window.addEventListener('resize',
+    debounce(() => requestAnimationFrame(drawZigzag)))
   drawZigzag()
 
   requestAnimationFrame(animateParallax)
@@ -65,11 +73,17 @@ function initialize () {
     handleGradientPick)
   document.querySelector('#gradient-end').addEventListener('input',
     handleGradientPick)
+  document.querySelector('#shadow-multiplier').addEventListener('input',
+    handleGradientPick)
+  document.querySelector('#shadow-multiplier-text').textContent =
+    document.querySelector('#shadow-multiplier').value
 }
 
 function handleGradientPick () {
   const startHex = document.querySelector('#gradient-start').value
   const endHex = document.querySelector('#gradient-end').value
+  document.querySelector('#shadow-multiplier-text').textContent =
+    document.querySelector('#shadow-multiplier').value
 
   ;({
     h: gradientStart.hue,
@@ -86,7 +100,6 @@ function handleGradientPick () {
   requestAnimationFrame(drawZigzag)
 }
 
-// debug
 function HSLtoHex(h,s,l) {
   s /= 100
   l /= 100
@@ -139,7 +152,6 @@ function HSLtoHex(h,s,l) {
   return '#' + r + g + b
 }
 
-// debug
 function hexToHSL(H) {
   let r = 0, g = 0, b = 0
   
@@ -176,6 +188,15 @@ function hexToHSL(H) {
 }
 
 function drawZigzag () {
+  // Create a secondary canvas for color-pick matching.
+  // NOTE: For performance reasons, we do not read from the main canvas.
+  // Readback causes significant performance issues,
+  // c.f. https://issues.chromium.org/issues/41350217#comment12 and others.
+  if (!drawZigzag.secondaryCanvas) {
+    drawZigzag.secondaryCanvas = document.createElement('canvas')
+    drawZigzag.secondaryCanvas.height = 1
+  }
+
   const canvas = document.getElementById('project-canvas')
   const ctx = canvas.getContext('2d')
   const realWidth = canvas.offsetWidth
@@ -225,11 +246,23 @@ function drawZigzag () {
 
   ctx.stroke()
 
-  // Pick the canvas to match color variables to the rendered gradient:
+  // Pick from the secondary canvas to match color values:
+  const secondaryCtx = drawZigzag.secondaryCanvas.getContext('2d')
+  drawZigzag.secondaryCanvas.width = points.length
+
+  secondaryCtx.clearRect(0, 0, points.length, 1)
+  for (let i = 0; i < points.length; i++) {
+    secondaryCtx.drawImage(ctx.canvas,
+      points[i].x, points[i].y, 1, 1,
+      i, 0, 1, 1,
+    )
+  }
+
+  const imageData = secondaryCtx.getImageData(0, 0, points.length, 1).data
   const colors = []
-  for (const point of points) {
-    const imageData = ctx.getImageData(point.x, point.y, 1, 1).data
-    colors.push(imageData)
+
+  for(let i = 0; i < imageData.length; i += 4) {
+    colors.push([imageData[i],imageData[i+1],imageData[i+2],imageData[i+3]])
   }
 
   updateShadowColors(colors)
@@ -355,15 +388,16 @@ function RGBtoHSL(r,g,b) {
 function updateShadowColors (colors) {
   const images = [...document.querySelectorAll('.project-container li img')]
   const shadows = [...document.querySelectorAll('.image-shadow')]
+  const shadowMultiplier = document.querySelector('#shadow-multiplier').value
 
   let index = 0
   for(const color of colors) {
     const hsl = RGBtoHSL(color[0],color[1],color[2])
 
     shadows[index].style.setProperty('--fade-shadow-color',
-      `rgb(${color[0] / 2}, ${color[1] / 2}, ${color[2] / 2})`)
+      `hsl(${hsl.h} ${hsl.s * 0.5}% ${hsl.l * shadowMultiplier * 0.5}%)`)
     shadows[index].style.setProperty('--reveal-shadow-color',
-      `hsl(${hsl.h} ${hsl.s}% ${hsl.l * 1.1}%)`)
+      `hsl(${hsl.h} ${hsl.s}% ${hsl.l * shadowMultiplier}%)`)
     images[index].style.setProperty('--border-color',
       `hsl(${hsl.h} ${hsl.s/2 + 15}% ${hsl.l/2 + 25}%)`)
 
