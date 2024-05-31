@@ -25,7 +25,7 @@ function initialize () {
   for (const e of slideParallaxList) {
     const scrollString = getComputedStyle(e)
                           .getPropertyValue('--parallax-scroll')
-                          || '100px' // In case script loads before CSS
+                          || '100px' // Safari may load script before CSS
     const parsedEntry = {
       element: e,
       shift: parseFloat(
@@ -50,12 +50,12 @@ function initialize () {
   requestAnimationFrame(animateParallax)
 
   // debug
-  document.querySelector('#gradient-start').value = HSLToHex(
+  document.querySelector('#gradient-start').value = HSLtoHex(
     gradientStart.hue,
     gradientStart.saturation,
     gradientStart.lightness,
   )
-  document.querySelector('#gradient-end').value = HSLToHex(
+  document.querySelector('#gradient-end').value = HSLtoHex(
     gradientEnd.hue,
     gradientEnd.saturation,
     gradientEnd.lightness,
@@ -70,99 +70,110 @@ function initialize () {
 function handleGradientPick () {
   const startHex = document.querySelector('#gradient-start').value
   const endHex = document.querySelector('#gradient-end').value
-  gradientStart = hexToHSL(startHex)
-  gradientEnd = hexToHSL(endHex)
+
+  ;({
+    h: gradientStart.hue,
+    s: gradientStart.saturation,
+    l: gradientStart.lightness,
+  } = hexToHSL(startHex))
+
+  ;({
+    h: gradientEnd.hue,
+    s: gradientEnd.saturation,
+    l: gradientEnd.lightness,
+  } = hexToHSL(endHex))
 
   requestAnimationFrame(drawZigzag)
 }
 
 // debug
-function HSLToHex(h,s,l) {
-  s /= 100;
-  l /= 100;
+function HSLtoHex(h,s,l) {
+  s /= 100
+  l /= 100
 
-  let c = (1 - Math.abs(2 * l - 1)) * s,
-      x = c * (1 - Math.abs((h / 60) % 2 - 1)),
-      m = l - c/2,
-      r = 0,
-      g = 0, 
-      b = 0; 
+  const c = (1 - Math.abs(2 * l - 1)) * s
+  const x = c * (1 - Math.abs((h / 60) % 2 - 1))
+  const m = l - c/2
+  let r = 0
+  let g = 0 
+  let b = 0 
 
   if (0 <= h && h < 60) {
-    r = c; g = x; b = 0;
+    r = c
+    g = x
+    b = 0
   } else if (60 <= h && h < 120) {
-    r = x; g = c; b = 0;
+    r = x
+    g = c
+    b = 0
   } else if (120 <= h && h < 180) {
-    r = 0; g = c; b = x;
+    r = 0
+    g = c
+    b = x
   } else if (180 <= h && h < 240) {
-    r = 0; g = x; b = c;
+    r = 0
+    g = x
+    b = c
   } else if (240 <= h && h < 300) {
-    r = x; g = 0; b = c;
+    r = x
+    g = 0
+    b = c
   } else if (300 <= h && h < 360) {
-    r = c; g = 0; b = x;
+    r = c
+    g = 0
+    b = x
   }
-  // Having obtained RGB, convert channels to hex
-  r = Math.round((r + m) * 255).toString(16);
-  g = Math.round((g + m) * 255).toString(16);
-  b = Math.round((b + m) * 255).toString(16);
 
-  // Prepend 0s, if necessary
+  // Construct hexadecimal string:
+  r = Math.round((r + m) * 255).toString(16)
+  g = Math.round((g + m) * 255).toString(16)
+  b = Math.round((b + m) * 255).toString(16)
+
   if (r.length == 1)
-    r = "0" + r;
+    r = '0' + r
   if (g.length == 1)
-    g = "0" + g;
+    g = '0' + g
   if (b.length == 1)
-    b = "0" + b;
+    b = '0' + b
 
-  return "#" + r + g + b;
+  return '#' + r + g + b
 }
 
 // debug
 function hexToHSL(H) {
-  // Convert hex to RGB first
-  let r = 0, g = 0, b = 0;
-  if (H.length == 4) {
-    r = "0x" + H[1] + H[1];
-    g = "0x" + H[2] + H[2];
-    b = "0x" + H[3] + H[3];
-  } else if (H.length == 7) {
-    r = "0x" + H[1] + H[2];
-    g = "0x" + H[3] + H[4];
-    b = "0x" + H[5] + H[6];
-  }
-  // Then to HSL
-  r /= 255;
-  g /= 255;
-  b /= 255;
-  let cmin = Math.min(r,g,b),
-      cmax = Math.max(r,g,b),
-      delta = cmax - cmin,
-      h = 0,
-      s = 0,
-      l = 0;
+  let r = 0, g = 0, b = 0
+  
+  r = ('0x' + H[1] + H[2]) / 255
+  g = ('0x' + H[3] + H[4]) / 255
+  b = ('0x' + H[5] + H[6]) / 255
+
+  const cmin = Math.min(r,g,b)
+  const cmax = Math.max(r,g,b)
+  const delta = cmax - cmin
+
+  let h = 0, s = 0, l = 0
 
   if (delta == 0)
-    h = 0;
+    h = 0
   else if (cmax == r)
-    h = ((g - b) / delta) % 6;
+    h = ((g - b) / delta) % 6
   else if (cmax == g)
-    h = (b - r) / delta + 2;
+    h = (b - r) / delta + 2
   else
-    h = (r - g) / delta + 4;
+    h = (r - g) / delta + 4
 
-  h = Math.round(h * 60);
+  h = Math.round(h * 60)
 
   if (h < 0)
-    h += 360;
+    h += 360
 
-  l = (cmax + cmin) / 2;
-  s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
-  s = +(s * 100).toFixed(1);
-  l = +(l * 100).toFixed(1);
+  l = (cmax + cmin) / 2
+  s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1))
+  s = +(s * 100).toFixed(2)
+  l = +(l * 100).toFixed(2)
 
-  return {hue: h, saturation: s, lightness: l}
+  return {h, s, l}
 }
-
 
 function drawZigzag () {
   const canvas = document.getElementById('project-canvas')
@@ -171,8 +182,8 @@ function drawZigzag () {
   const realHeight = canvas.offsetHeight
   const points = []
 
-  canvas.width = realWidth;
-  canvas.height = realHeight;
+  canvas.width = realWidth
+  canvas.height = realHeight
   
   const canvasRect = canvas.getBoundingClientRect()
   const gradient = ctx.createLinearGradient(0, 0, 0, canvasRect.height)
@@ -206,7 +217,7 @@ function drawZigzag () {
   for (const img of images) {
     currentPoint = relativeCenter(img)
     currentPoint[0] += displacement // Reduce horizontal scale of zig-zag
-    displacement *= -1
+    displacement *= -1 // Alternate sides
 
     ctx.lineTo(...currentPoint)
     points.push({x: currentPoint[0], y: currentPoint[1]})
@@ -214,14 +225,14 @@ function drawZigzag () {
 
   ctx.stroke()
 
-  // debug -- color from pick?
+  // Pick the canvas to match color variables to the rendered gradient:
   const colors = []
   for (const point of points) {
     const imageData = ctx.getImageData(point.x, point.y, 1, 1).data
     colors.push(imageData)
   }
 
-  updateShadowColors2(colors)
+  updateShadowColors(colors)
 
   function relativeCenter (element) {
     const rect = element.getBoundingClientRect()
@@ -241,27 +252,15 @@ function handleIntersections (entries) {
   }
 }
 
-function lerpGradient(t) {
-  let startHue = gradientStart.hue
-  if(gradientEnd.hue - gradientStart.hue > 180) {
-    startHue = 360 + startHue
-  }
-  return {
-    hue: startHue * (1-t) + gradientEnd.hue * t,
-    saturation: gradientStart.saturation * (1-t) + gradientEnd.saturation * t,
-    lightness: gradientStart.lightness * (1-t) + gradientEnd.lightness * t,
-  }
-}
-
 function lerpGradientRGB(t) {
   let startHue = gradientStart.hue
   if(gradientEnd.hue - gradientStart.hue > 180) {
     startHue = 360 + startHue
   }
 
-  const startRGB = HSLToRGB(startHue,
+  const startRGB = HSLtoRGB(startHue,
     gradientStart.saturation, gradientStart.lightness)
-  const endRGB = HSLToRGB(gradientEnd.hue,
+  const endRGB = HSLtoRGB(gradientEnd.hue,
     gradientEnd.saturation, gradientEnd.lightness)
 
   return {
@@ -271,86 +270,95 @@ function lerpGradientRGB(t) {
   }
 }
 
-function HSLToRGB(h,s,l) {
-  // Must be fractions of 1
+function HSLtoRGB(h,s,l) {
   s /= 100
   l /= 100
 
-  let c = (1 - Math.abs(2 * l - 1)) * s,
-      x = c * (1 - Math.abs((h / 60) % 2 - 1)),
-      m = l - c/2,
-      r = 0,
-      g = 0,
-      b = 0
+  const c = (1 - Math.abs(2 * l - 1)) * s
+  const x = c * (1 - Math.abs((h / 60) % 2 - 1))
+  const m = l - c/2
+
+  let r = 0, g = 0, b = 0
 
   if (0 <= h && h < 60) {
-    r = c; g = x; b = 0;  
+    r = c
+    g = x
+    b = 0
   } else if (60 <= h && h < 120) {
-    r = x; g = c; b = 0;
+    r = x
+    g = c
+    b = 0
   } else if (120 <= h && h < 180) {
-    r = 0; g = c; b = x;
+    r = 0
+    g = c
+    b = x
   } else if (180 <= h && h < 240) {
-    r = 0; g = x; b = c;
+    r = 0
+    g = x
+    b = c
   } else if (240 <= h && h < 300) {
-    r = x; g = 0; b = c;
+    r = x
+    g = 0
+    b = c
   } else if (300 <= h && h < 360) {
-    r = c; g = 0; b = x;
+    r = c
+    g = 0
+    b = x
   }
-  r = Math.round((r + m) * 255);
-  g = Math.round((g + m) * 255);
-  b = Math.round((b + m) * 255);
+
+  r = Math.round((r + m) * 255)
+  g = Math.round((g + m) * 255)
+  b = Math.round((b + m) * 255)
+
   return {r,g,b}
 }
 
-function RGBToHSL(r,g,b) {
-  r /= 255;
-  g /= 255;
-  b /= 255;
+function RGBtoHSL(r,g,b) {
+  r /= 255
+  g /= 255
+  b /= 255
 
-  // Find greatest and smallest channel values
-  let cmin = Math.min(r,g,b),
-      cmax = Math.max(r,g,b),
-      delta = cmax - cmin,
-      h = 0,
-      s = 0,
-      l = 0;
+  const cmin = Math.min(r,g,b)
+  const cmax = Math.max(r,g,b)
+  const delta = cmax - cmin
+  let h = 0, s = 0, l = 0
 
-      if (delta == 0)
-        h = 0;
-      // Red is max
-      else if (cmax == r)
-        h = ((g - b) / delta) % 6;
-      // Green is max
-      else if (cmax == g)
-        h = (b - r) / delta + 2;
-      // Blue is max
-      else
-        h = (r - g) / delta + 4;
+  if (delta == 0) {
+    h = 0
+  }
+  else if (cmax == r) {
+    h = ((g - b) / delta) % 6
+  }
+  else if (cmax == g) {
+    h = (b - r) / delta + 2
+  }
+  else {
+    h = (r - g) / delta + 4
+  }
+
+  h = Math.round(h * 60)
     
-      h = Math.round(h * 60);
-        
-      // Make negative hues positive behind 360°
-      if (h < 0)
-          h += 360;
-      l = (cmax + cmin) / 2;
+  if (h < 0) {
+    h += 360
+  }
 
-      // Calculate saturation
-      s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
-        
-      // Multiply l and s by 100
-      s = +(s * 100).toFixed(1);
-      l = +(l * 100).toFixed(1);
+  l = (cmax + cmin) / 2
+
+  s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1))
+    
+  s = +(s * 100).toFixed(2)
+  l = +(l * 100).toFixed(2)
 
   return {h, s, l}
 }
 
-function updateShadowColors2 (colors) {
+function updateShadowColors (colors) {
   const images = [...document.querySelectorAll('.project-container li img')]
   const shadows = [...document.querySelectorAll('.image-shadow')]
 
   let index = 0
   for(const color of colors) {
-    const hsl = RGBToHSL(color[0],color[1],color[2])
+    const hsl = RGBtoHSL(color[0],color[1],color[2])
 
     shadows[index].style.setProperty('--fade-shadow-color',
       `rgb(${color[0] / 2}, ${color[1] / 2}, ${color[2] / 2})`)
@@ -360,31 +368,6 @@ function updateShadowColors2 (colors) {
       `hsl(${hsl.h} ${hsl.s/2 + 15}% ${hsl.l/2 + 25}%)`)
 
     index++
-  }
-}
-
-function updateShadowColors () {
-  const images = [...document.querySelectorAll('.project-container li img')]
-  const shadows = [...document.querySelectorAll('.image-shadow')]
-  const firstShadowTop = shadows[0].getBoundingClientRect().top
-  const lastShadowTop = shadows[shadows.length - 1].getBoundingClientRect().top
-  const shadowRange = lastShadowTop - firstShadowTop
-
-  console.log('shadow range:',shadowRange)
-
-  for(let index = 0; index < shadows.length; index++) {
-    const shadow = shadows[index]
-    const shadowTop = shadow.getBoundingClientRect().top
-    const t = (shadowTop - firstShadowTop) / shadowRange
-    const hsl = lerpGradient(t)
-    const rgb = lerpGradientRGB(t)
-
-    shadow.style.setProperty('--fade-shadow-color',
-      `rgb(${rgb.r / 2}, ${rgb.g / 2}, ${rgb.b / 2})`)
-    shadow.style.setProperty('--reveal-shadow-color',
-      `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`)
-    images[index].style.setProperty('--border-color',
-      `hsl(${hsl.hue} ${20 + hsl.saturation / 2}% ${23 + hsl.lightness / 2}%)`)
   }
 }
 
