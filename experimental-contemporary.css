@@ -671,7 +671,7 @@ Desktop-first makes it easier to encapsulate this behavior */
   }
 
   .project-container li img {
-    transform: translate(-186px, -43px);
+    transform: translate(-190px, -23px);
     width: min(320px, 50vw);
     height: min(320px, 50vw);
       
