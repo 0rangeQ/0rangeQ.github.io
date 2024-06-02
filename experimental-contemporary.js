@@ -471,12 +471,16 @@ function initModal () {
       initModal.clearId = setTimeout(() => {
         const clone = template.content.cloneNode(true)
         const closeBox = document.createElement('button')
+        const modalContent = document.createElement('div')
 
         closeBox.classList.add('modal-close')
         closeBox.addEventListener('click', closeModal)
 
+        modalContent.classList.add('modal-content')
+        modalContent.append(clone)
+
         modal.append(closeBox)
-        modal.append(clone)
+        modal.append(modalContent)
 
       }, 500)
     })
