@@ -488,16 +488,20 @@ h2 {
   margin-top: -4rem;
 }
 
-.project-details a {
+.project-details a,
+.modal a {
   color: #dc5de8;
 }
-.project-details a:visited {
+.project-details a:visited,
+.modal a:visited {
   color: #dc5de8;
 }
-.project-details a:hover {
+.project-details a:hover,
+.modal a:hover {
   color: #f9b9ff;
 }
-.project-details a:active {
+.project-details a:active,
+.modal a:active {
   color: #fbd1ff;
 }
 
@@ -839,16 +843,13 @@ footer a:active {
 
 /* Compensate for sticky close button: */
 .modal > :nth-child(2) {
-  margin-top: calc(-3/5 * var(--close-box-size));
+  margin-top: calc(-1 * var(--close-box-size));
 }
 
 .modal h2,
 .modal h3 {
-  margin-bottom: 0.5rem;
-}
-
-.modal h3 {
   margin-top: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .modal p {
@@ -857,6 +858,31 @@ footer a:active {
 
 .modal p:last-of-type {
   margin-bottom: 3rem;
+}
+
+.modal i {
+  color: var(--header-color);
+  display: block;
+  font-size: 0.9em;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+  text-decoration: underline;
+  text-underline-offset: 12px;
+}
+
+.modal a {
+  color: #f18afa;
+  font-weight: 600;
+  font-size: 1.4em;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1.5rem;
+}
+
+.modal a + h3 {
+  margin-top: 0.25rem;
+  font-size: 0.9em;
+  font-style: italic;
 }
 
 .modal-close::before,
