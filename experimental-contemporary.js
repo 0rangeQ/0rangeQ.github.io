@@ -4,15 +4,15 @@ const observer = new IntersectionObserver(
   { threshold: [0.7] })
 
 let gradientStart = {
-  hue: 258,
-  saturation: 100,
-  lightness: 10,
+  hue: 193,
+  saturation: 33,
+  lightness: 11,
 }
 
 let gradientEnd = {
-  hue: 290,
-  saturation: 48,
-  lightness: 12,
+  hue: 289,
+  saturation: 71,
+  lightness: 13,
 }
 
 function debounce(callback, delay = 200) {
