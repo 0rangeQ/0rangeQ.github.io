@@ -52,7 +52,15 @@ function initialize () {
   }
 
   window.addEventListener('resize',
-    debounce(() => requestAnimationFrame(drawZigzag)))
+    debounce(() => requestAnimationFrame(() => {
+      drawZigzag()
+      const modal = document.querySelector('#modal-dialog')
+      const xCenter = innerWidth / 2
+      const yCenter = innerHeight / 2
+      modal.style.left = xCenter + 'px'
+      modal.style.top = yCenter + 'px'
+    })))
+
   drawZigzag()
 
   requestAnimationFrame(animateParallax)
