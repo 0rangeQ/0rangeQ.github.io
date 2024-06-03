@@ -9,8 +9,29 @@
 :root {
   --copy-color: rgb(234, 232, 255);
   --header-color: rgb(139, 209, 255);
+  --scrollbar-background: #08080a80;
   --copy-size: 1.15rem;
   --lex-family: 'Lexend', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* WebKit scrollbar styles */
+*::-webkit-scrollbar {
+  background-color: var(--scrollbar-background);
+  width: 12px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #335;
+  border-radius: 4px;
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #446;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #557;
 }
 
 @media (min-width: 768px) {
@@ -467,16 +488,20 @@ h2 {
   margin-top: -4rem;
 }
 
-.project-details a {
+.project-details a,
+.modal a {
   color: #dc5de8;
 }
-.project-details a:visited {
+.project-details a:visited,
+.modal a:visited {
   color: #dc5de8;
 }
-.project-details a:hover {
+.project-details a:hover,
+.modal a:hover {
   color: #f9b9ff;
 }
-.project-details a:active {
+.project-details a:active,
+.modal a:active {
   color: #fbd1ff;
 }
 
@@ -554,6 +579,7 @@ Desktop-first makes it easier to encapsulate this behavior */
   border: 8px solid var(--border-color);
 
   position: relative;
+  z-index: -1;
 }
 
 @media (max-width: 500px) {
@@ -650,7 +676,7 @@ Desktop-first makes it easier to encapsulate this behavior */
   }
 
   .project-container li img {
-    transform: translate(-186px, -43px);
+    transform: translate(-190px, -23px);
     width: min(320px, 50vw);
     height: min(320px, 50vw);
       
@@ -789,4 +815,121 @@ footer a:active {
   z-index: 3;
   padding: 1rem;
   position: fixed;
+}
+
+.modal {
+  --modal-width: min(85vw, 80ch);
+  --modal-height: 85vh;
+  --close-box-size: 60px;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  border-radius: 16px;
+  background-color: #335;
+  box-shadow: 16px 16px 0 50vmax #0008;
+  position: fixed;
+  display: none;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background-color: #557;
+}
+.modal::-webkit-scrollbar-thumb:hover {
+  background-color: #668;
+}
+.modal::-webkit-scrollbar-thumb:active {
+  background-color: #779;
+}
+
+/* Compensate for sticky close button: */
+.modal > :nth-child(2) {
+  margin-top: calc(-1 * var(--close-box-size));
+}
+
+.modal h2,
+.modal h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal p {
+  margin-bottom: 1rem;
+}
+
+.modal p:last-of-type {
+  margin-bottom: 3rem;
+}
+
+.modal i {
+  color: var(--header-color);
+  display: block;
+  font-size: 0.9em;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+  text-decoration: underline;
+  text-underline-offset: 12px;
+}
+
+.modal a {
+  color: #f18afa;
+  font-weight: 600;
+  font-size: 1.4em;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1.5rem;
+}
+
+.modal a + h3 {
+  margin-top: 0.25rem;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.modal-close::before,
+.modal-close:hover::before {
+  /* Icon delegated to pseudoelement to avoid z-index issues with position: sticky */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='gainsboro' class='bi bi-x' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 32px;
+  background-position: 50%;
+}
+
+.modal-close {
+  --close-box-margin: 10px;
+  cursor: pointer;
+  position: sticky;
+  top: 0px;
+  left: 100%;
+  background-color: transparent;
+  width: var(--close-box-size);
+  height: var(--close-box-size);
+  border: none;
+}
+
+.modal-close::before {
+  content: '';
+  width: calc(var(--close-box-size) - 2*var(--close-box-margin));
+  height: calc(var(--close-box-size) - 2*var(--close-box-margin));
+  position: absolute;
+  top: var(--close-box-margin);
+  left: var(--close-box-margin);
+  background-color: #0004;
+  border-radius: 50%;
+}
+
+.modal-close:hover::before {
+  content: '';
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #c44;
+  border-radius: 50%;
+}
+
+.modal-content {
+  margin-left: 1.5rem;
+  margin-right: 2.5rem;
 }

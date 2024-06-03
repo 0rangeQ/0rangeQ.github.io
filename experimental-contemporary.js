@@ -4,15 +4,15 @@ const observer = new IntersectionObserver(
   { threshold: [0.7] })
 
 let gradientStart = {
-  hue: 258,
-  saturation: 100,
-  lightness: 10,
+  hue: 193,
+  saturation: 33,
+  lightness: 11,
 }
 
 let gradientEnd = {
-  hue: 290,
-  saturation: 48,
-  lightness: 12,
+  hue: 289,
+  saturation: 71,
+  lightness: 13,
 }
 
 function debounce(callback, delay = 200) {
@@ -52,7 +52,15 @@ function initialize () {
   }
 
   window.addEventListener('resize',
-    debounce(() => requestAnimationFrame(drawZigzag)))
+    debounce(() => requestAnimationFrame(() => {
+      drawZigzag()
+      const modal = document.querySelector('#modal-dialog')
+      const xCenter = innerWidth / 2
+      const yCenter = innerHeight / 2
+      modal.style.left = xCenter + 'px'
+      modal.style.top = yCenter + 'px'
+    })))
+
   drawZigzag()
 
   requestAnimationFrame(animateParallax)
@@ -418,4 +426,78 @@ function animateParallax () {
     }
 
   requestAnimationFrame(animateParallax)
+}
+
+initModal()
+function initModal () {
+  document.addEventListener('click', event => {
+    if(!event.target.closest('.modal')) {
+      closeModal()
+    }
+  })
+
+  const modal = document.querySelector('#modal-dialog')
+
+  for(const a of document.querySelectorAll('.project-container a')) {
+    const li = a.closest('li')
+    const template = li.querySelector('template')
+
+    // Skip over modal candidates which do not have a template defined:
+    if (!template) {
+      continue
+    }
+
+    // Otherwise, attach modal dialogs as a progressive enhancement:
+    a.addEventListener('click', event => {
+      event.preventDefault()
+      event.stopPropagation()
+
+      clearTimeout(initModal.clearId)
+
+      const bounds = event.target.getBoundingClientRect()
+      const xCenter = innerWidth / 2
+      const yCenter = innerHeight / 2
+      
+      modal.style.top = bounds.top + 0.5 * bounds.height + 'px'
+      modal.style.left = bounds.left + 0.5 * bounds.width + 'px'
+      modal.style.width = '0px'
+      modal.style.height = '0px'
+      modal.style.display = 'unset'
+      modal.style.opacity = 0
+
+      requestAnimationFrame(() => {
+        modal.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
+        modal.style.left = xCenter + 'px'
+        modal.style.top = yCenter + 'px'
+        modal.style.width = 'var(--modal-width)'
+        modal.style.height = 'var(--modal-height)'
+        modal.style.opacity = 1
+      })
+
+      modal.innerHTML = ''
+
+      initModal.clearId = setTimeout(() => {
+        const clone = template.content.cloneNode(true)
+        const closeBox = document.createElement('button')
+        const modalContent = document.createElement('div')
+
+        closeBox.classList.add('modal-close')
+        closeBox.addEventListener('click', closeModal)
+
+        modalContent.classList.add('modal-content')
+        modalContent.append(clone)
+
+        modal.append(closeBox)
+        modal.append(modalContent)
+
+      }, 500)
+    })
+
+  }
+}
+
+function closeModal () {
+  const modal = document.querySelector('#modal-dialog')
+  modal.style.display = 'none'
+  modal.style.transition = 'none'
 }
